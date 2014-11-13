@@ -60,5 +60,27 @@ namespace Microsoft.Azure.Commands.DataFactories.Test
         {
             RunPowerShellTest("Test-DataFactoryPiping");
         }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void TestCreateDuplicateDataFactory()
+        {
+            RunPowerShellTest("Test-CreateDuplicateDataFactory");
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void TestGetAzureDataFactoryRunWithInvalidStringDate()
+        {
+            RunPowerShellTest("Test-GetAzureDataFactoryRunWithInvalidStringDate");
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void TestGetAzureDataFactoryRunWithEmptyDate()
+        {
+            RunPowerShellTest("Test-GetAzureDataFactoryRunWithEmptyDate");
+        }
+
     }
 }

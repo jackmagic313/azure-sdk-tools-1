@@ -42,6 +42,12 @@ HelpMessage = "The data factory object.")]
         [EnvironmentPermission(SecurityAction.Demand, Unrestricted = true)]
         public override void ExecuteCmdlet()
         {
+            // ValidationNotNullOrEmpty doesn't handle whitespaces well
+            if (Name != null && string.IsNullOrWhiteSpace(Name))
+            {
+                throw new PSArgumentNullException("Name");
+            }
+
             if (ParameterSetName == ByFactoryObject)
             {
                 if (DataFactory == null)

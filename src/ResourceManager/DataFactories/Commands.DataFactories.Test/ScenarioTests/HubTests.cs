@@ -39,5 +39,19 @@ namespace Microsoft.Azure.Commands.DataFactories.Test
         {
             RunPowerShellTest("Test-HubPiping");
         }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void TestGetHubWithWhiteSpaceName()
+        {
+            RunPowerShellTest("Test-GetHubWithWhiteSpaceName");
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void TestGetHubWithEmptyName()
+        {
+            RunPowerShellTest("Test-GetHubWithEmptyName");
+        }
     }
 }
