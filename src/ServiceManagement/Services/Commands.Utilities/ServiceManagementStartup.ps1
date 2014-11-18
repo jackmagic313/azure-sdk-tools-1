@@ -26,18 +26,6 @@ $aliases = @{
     "Add-WAPackEnvironment" = "Add-AzureEnvironment";
     "Set-WAPackEnvironment" = "Set-AzureEnvironment";
     "Remove-WAPackEnvironment" = "Remove-AzureEnvironment";
-	"Get-AzureDataFactory" = "Show-ADFCmdletCommands";
-	"New-AzureDataFactory" = "Show-ADFCmdletCommands";
-    "Get-AzureDataFactoryGateway" = "Show-ADFCmdletCommands";
-	"New-AzureDataFactoryGateway" = "Show-ADFCmdletCommands";
-	"Get-AzureDataFactoryLinkedService" = "Show-ADFCmdletCommands";
-	"New-AzureDataFactoryLinkedService" = "Show-ADFCmdletCommands";
-	"Get-AzureDataFactoryTable" = "Show-ADFCmdletCommands";
-	"New-AzureDataFactoryTable" = "Show-ADFCmdletCommands";
-	"Get-AzureDataFactoryPipeline" = "Show-ADFCmdletCommands";
-	"New-AzureDataFactoryPipeline" = "Show-ADFCmdletCommands";
-	"Get-AzureDataFactoryHub" = "Show-ADFCmdletCommands";
-	"New-AzureDataFactoryHub" = "Show-ADFCmdletCommands";
 
     # Websites aliases
     "New-WAPackWebsite" = "New-AzureWebsite";
