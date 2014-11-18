@@ -67,20 +67,5 @@ namespace Microsoft.Azure.Commands.DataFactories.Test
         {
             RunPowerShellTest("Test-CreateAndOverwriteDataFactory");
         }
-
-        [Fact]
-        [Trait(Category.AcceptanceType, Category.CheckIn)]
-        public void TestGetAzureDataFactoryRunWithInvalidStringDate()
-        {
-            RunPowerShellTest("Test-GetAzureDataFactoryRunWithInvalidStringDate");
-        }
-
-        [Fact]
-        [Trait(Category.AcceptanceType, Category.CheckIn)]
-        public void TestGetAzureDataFactoryRunWithEmptyDate()
-        {
-            RunPowerShellTest("Test-GetAzureDataFactoryRunWithEmptyDate");
-        }
-
     }
 }

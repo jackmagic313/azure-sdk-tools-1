@@ -146,21 +146,3 @@ function Test-CreateAndOverwriteDataFactory
 	Remove-AzureDataFactory -Name $dataFactoryName -ResourceGroupName $resourceGroupName -Force 
 
 }
-
-<#
-.SYNOPSIS
-Test run log with invalid string date.
-#>
-function Test-GetAzureDataFactoryRunWithInvalidStringDate
-{
-	Assert-ThrowsContains{ Get-AzureDataFactoryRun -DataFactoryName $dataFactoryName -TableName DAWikiAggregatedData -ResourceGroupName $resourceGroupName -StartDateTime "RandonString" } "string was not recognized as a valid DateTime."
-}
-
-<#
-.SYNOPSIS
-Test run log with empty date.
-#>
-function Test-GetAzureDataFactoryRunWithEmptyDate
-{
-	Assert-ThrowsContains{ Get-AzureDataFactoryRun -DataFactoryName $dataFactoryName -TableName DAWikiAggregatedData -ResourceGroupName $resourceGroupName -StartDateTime "" } "String was not recognized as a valid DateTime."
-}
