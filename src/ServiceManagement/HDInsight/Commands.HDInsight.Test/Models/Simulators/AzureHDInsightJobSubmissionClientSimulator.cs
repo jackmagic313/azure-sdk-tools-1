@@ -60,6 +60,11 @@ namespace Microsoft.WindowsAzure.Commands.Test.Utilities.HDInsight.Simulators
 
         public event EventHandler<WaitJobStatusEventArgs> JobStatusEvent;
 
+        public string GetCustomUserAgent()
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddLogWriter(ILogWriter logWriter)
         {
             this.logger.AddWriter(logWriter);
