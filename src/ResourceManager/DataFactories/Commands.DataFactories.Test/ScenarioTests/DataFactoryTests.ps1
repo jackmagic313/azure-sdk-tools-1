@@ -12,40 +12,6 @@
 # limitations under the License.
 # ----------------------------------------------------------------------------------
 
-$endDate = [DateTime]::Parse("9/8/2014 2:00:00 PM")
-$startDate = $endDate.AddHours(-1)
-$folder = ".\ScenarioTests\WikipediaSample\"
-$fakeJsonFolder = ".\ScenarioTests\WikipediaSampleFakeJsons\"
-
-#Uncomment the  below for Playback mode
-#$folder = $fakeJsonFolder
-
-$dataFactoryName = Get-DataFactoryName
-$resourceGroupName = Get-ResourceGroupName
-$rglocation = Get-ProviderLocation ResourceManagement
-$location = Get-ProviderLocation DataFactoryManagement
-
-New-AzureResourceGroup -Name $resourceGroupName -Location $rglocation -Force
-
-function TestPreRequisites
-{
-     try
-	{
-		#create datafactory
-		$df = New-AzureDataFactory -ResourceGroupName $resourceGroupName -Name $dataFactoryName -Location $location
-		Assert-AreEqual $df.DataFactoryName $dataFactoryName
-	}
-	catch
-    {
-        Clean-DataFactory $resourceGroupName $dataFactoryName
-    }
-}
-
-function TestCleanup
-{
-	Remove-AzureDataFactory -Name $dataFactoryName -ResourceGroupName $resourceGroupName -Force 
-}
-
 <#
 .SYNOPSIS
 Nagative test. Get resources from an non-existing empty group.
@@ -164,27 +130,21 @@ function Test-DataFactoryPiping
 .SYNOPSIS
 Test duplicate data factory.
 #>
-function Test-CreateDuplicateDataFactory
+function Test-CreateAndOverwriteDataFactory
 {
-	TestPreRequisites
-	try
-	{
 
-        $df = New-AzureDataFactory -ResourceGroupName $resourceGroupName -Name $dataFactoryName -Location $location -force
-		Assert-AreEqual $df.DataFactoryName $dataFactoryName
+    $df = New-AzureDataFactory -ResourceGroupName $resourceGroupName -Name $dataFactoryName -Location $location -force
+    Assert-AreEqual $df.DataFactoryName $dataFactoryName
 
-		$dfDuplicate = New-AzureDataFactory -ResourceGroupName $resourceGroupName -Name $dataFactoryName -Location $location -Force
-		Assert-AreEqual $dfDuplicate.DataFactoryName $dataFactoryName
+	$dfDuplicate = New-AzureDataFactory -ResourceGroupName $resourceGroupName -Name $dataFactoryName -Location $location -Force
+	Assert-AreEqual $dfDuplicate.DataFactoryName $dataFactoryName
 	
-		$dfGetResult = Get-AzureDataFactory -ResourceGroupName $resourceGroupName -Name $dataFactoryName
+	$dfGetResult = Get-AzureDataFactory -ResourceGroupName $resourceGroupName -Name $dataFactoryName
 
-		Assert-AreEqual $dfGetResult.Count 1
-	}
-	finally
-	{
-		# Test Cleanup
-		TestCleanup
-	}
+	Assert-AreEqual $dfGetResult.Count 1
+	
+	Remove-AzureDataFactory -Name $dataFactoryName -ResourceGroupName $resourceGroupName -Force 
+
 }
 
 <#

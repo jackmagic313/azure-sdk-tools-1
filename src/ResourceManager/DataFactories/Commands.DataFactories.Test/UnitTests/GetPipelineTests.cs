@@ -12,8 +12,10 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using Microsoft.Azure.Commands.DataFactories.Models;
+using System.Management.Automation;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
 using Moq;
 using Xunit;
@@ -69,11 +71,19 @@ namespace Microsoft.Azure.Commands.DataFactories.Test
                 .Verifiable();
 
             // Action
+            cmdlet.Name = "  ";
+            Exception whiteSpace = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
+
+            cmdlet.Name = "";
+            Exception empty = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
+
             cmdlet.Name = pipelineName;
             cmdlet.ExecuteCmdlet();
 
             // Assert
             dataFactoriesClientMock.VerifyAll();
+            Assert.Contains("Value cannot be null", whiteSpace.Message);
+            Assert.Contains("Value cannot be null", empty.Message);
 
             commandRuntimeMock.Verify(f => f.WriteObject(expected), Times.Once());
         }
