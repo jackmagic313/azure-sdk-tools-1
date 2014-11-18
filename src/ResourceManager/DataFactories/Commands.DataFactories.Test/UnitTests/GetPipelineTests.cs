@@ -71,21 +71,37 @@ namespace Microsoft.Azure.Commands.DataFactories.Test
                 .Verifiable();
 
             // Action
-            cmdlet.Name = "  ";
-            Exception whiteSpace = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
-
-            cmdlet.Name = "";
-            Exception empty = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
-
             cmdlet.Name = pipelineName;
             cmdlet.ExecuteCmdlet();
 
             // Assert
             dataFactoriesClientMock.VerifyAll();
-            Assert.Contains("Value cannot be null", whiteSpace.Message);
-            Assert.Contains("Value cannot be null", empty.Message);
 
             commandRuntimeMock.Verify(f => f.WriteObject(expected), Times.Once());
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void GetPipelineWithEmptyName()
+        {
+            // Action
+            cmdlet.Name = String.Empty;
+            Exception empty = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
+
+            // Assert
+            Assert.Contains("Value cannot be null", empty.Message);
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        public void GetPipelineWithWhiteSpaceName()
+        {
+            // Action
+            cmdlet.Name = "   ";
+            Exception whiteSpace = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
+
+            // Assert
+            Assert.Contains("Value cannot be null", whiteSpace.Message);
         }
 
         [Fact]
