@@ -128,7 +128,7 @@ function Test-DataFactoryPiping
 
 <#
 .SYNOPSIS
-Test duplicate data factory.
+Test Creating and overwriting data factory.
 #>
 function Test-CreateAndOverwriteDataFactory
 {

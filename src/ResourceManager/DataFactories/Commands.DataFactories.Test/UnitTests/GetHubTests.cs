@@ -12,12 +12,12 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Management.Automation;
 using Microsoft.Azure.Commands.DataFactories.Models;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
 using Moq;
+using System;
+using System.Collections.Generic;
+using System.Management.Automation;
 using Xunit;
 
 namespace Microsoft.Azure.Commands.DataFactories.Test
@@ -86,10 +86,10 @@ namespace Microsoft.Azure.Commands.DataFactories.Test
         {
             // Action
             cmdlet.Name = String.Empty;
-            Exception empty = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
+            Exception exception = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
 
             // Assert
-            Assert.Contains("Value cannot be null", empty.Message);
+            Assert.Contains("Value cannot be null", exception.Message);
         }
 
         [Fact]
@@ -98,10 +98,10 @@ namespace Microsoft.Azure.Commands.DataFactories.Test
         {
             // Action
             cmdlet.Name = "   ";
-            Exception whiteSpace = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
+            Exception exception = Assert.Throws<PSArgumentNullException>(() => cmdlet.ExecuteCmdlet());
 
             // Assert
-            Assert.Contains("Value cannot be null", whiteSpace.Message);
+            Assert.Contains("Value cannot be null", exception.Message);
         }
 
         [Fact]
