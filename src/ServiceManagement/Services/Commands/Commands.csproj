@@ -232,6 +232,7 @@
     <Compile Include="ServiceBus\GetAzureSBNamespace.cs" />
     <Compile Include="ServiceBus\NewAzureSBNamespace.cs" />
     <Compile Include="ServiceBus\RemoveAzureSBNamespace.cs" />
+    <Compile Include="ShowADFCmdletCommands.cs" />
     <Compile Include="Store\GetAzureStoreAddOn.cs" />
     <Compile Include="Store\NewAzureStoreAddOn.cs" />
     <Compile Include="Store\RemoveAzureStoreAddOn.cs" />
